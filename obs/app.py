@@ -102,7 +102,6 @@ def dashboard():
 def derslerim():
     courses = Course.query.filter_by(user_id=current_user.id).all()
     return render_template('derslerim.html', courses=courses)
-print(courses)  # Bu satırı ekleyin
    
 
 @app.route('/notlar')
