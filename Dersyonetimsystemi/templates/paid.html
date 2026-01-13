@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>abonelik baslama</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #d1e2f7; 
+            background-image: linear-gradient(135deg, #d1e2f7 0%, #a8c0e2 100%);
+        }
+        .form-input-lg {
+            @apply w-full border-none px-4 py-3 text-lg rounded-lg bg-gray-100 shadow-inner placeholder-gray-400 focus:ring-2 focus:ring-blue-400 focus:bg-white transition duration-200;
+        }
+        .summary-box { background-color: #f7f9fc; }
+        .subscribe-btn {
+            background-color: #eb459f;
+            @apply hover:bg-pink-700 transition duration-150 shadow-lg text-white font-bold py-3 px-4 rounded-lg;
+        }
+        .h { font-weight: bolder; font-family: serif; text-align: center; padding-bottom: 15px; font-style: italic; font-size: xx-large; }
+        .a { text-align: center; font-weight: bolder; font-family: serif; font-style: italic; display: block; }
+        #a {
+            text-align: center;
+            font-weight: bolder;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: center;
+            font-style: italic;
+            }
+    </style>
+    <script>
+        function fillTestData() {
+            document.getElementById('card-number').value = "4242 4242 4242 4242";
+            document.getElementById('card-date').value = "12 / 26";
+            document.getElementById('card-cvc').value = "123";
+            document.getElementById('card-name').value = "John Doe";
+            document.getElementById('contact-name').value = "John Doe";
+            document.getElementById('contact-email').value = "john@example.com";
+            document.getElementById('contact-phone').value = "555-0199";
+        }
+
+        
+        function handleSubscription() {
+            const agreement = document.getElementById('agreement').checked;
+            const cardNumber = document.getElementById('card-number').value;
+
+            if (!agreement) {
+                alert('Please agree to the Terms and Conditions.');
+                return;
+            }
+
+            if (cardNumber.length < 16) {
+                alert('Please enter a valid card number.');
+                return;
+            }
+            
+            const btn = document.querySelector('.subscribe-btn');
+            btn.innerHTML = "Processing Payment...";
+            btn.disabled = true;
+            btn.style.opacity = "0.7";
+
+            setTimeout(() => {
+                alert('Payment of $11.50 Successful! (Simulated)');
+                window.location.href = "{% url 'home' %}";
+            }, 2000); 
+        }
+    </script>
+</head>
+<body class="flex items-center justify-center py-16">
+
+    <div class="max-w-4xl w-full bg-white rounded-xl shadow-2xl p-6 sm:p-10 lg:p-16">
+     
+        <header class="text-center mb-10 sm:mb-16">
+            <h1 class="h">hemen aboneligin baslayin</h1>
+            <a id ="a"class="a text-blue-600" href="{% url 'home'%}"> anasayfa </a>
+            <a id ="a"  href="{% url 'subscribe'%}"> önceki Sayfa </a>
+            <p id ="a" >son adim</p>
+        </header>
+
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16">
+
+            <div class="space-y-8">
+                <div>
+                    <h2 class="text-xl font-medium text-gray-700 mb-4 flex justify-between items-center">
+                        kart ile odmem
+                        <button onclick="fillTestData()" class="text-xs bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded text-gray-600 transition">
+                            Fill Test Data
+                        </button>
+                    </h2>
+                    
+                    <div class="space-y-4">
+                        <div class="relative">
+                            <input id="card-number" type="text" placeholder="0000 0000 0000 0000" class="form-input-lg" maxlength="19">
+                            <svg class="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </div>
+                      
+                        <div class="flex space-x-4">
+                            <input id="card-date" type="text" placeholder="MM / YY" class="form-input-lg" maxlength="7">
+                            <div class="relative w-full">
+                                <input id="card-cvc" type="text" placeholder="CVC" class="form-input-lg pr-10" maxlength="4">
+                                <svg class="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                            </div>
+                        </div>
+
+                        <input id="card-name" type="text" placeholder="Name On Card" class="form-input-lg">
+                    </div>
+                </div>
+               
+                <div>
+                    <h2 class="text-xl font-medium text-gray-700 mb-4">Ülke veya Bölge</h2>
+                    <select class="form-input-lg appearance-none">
+                        <option>Turkey</option>
+                        <option>United States</option>
+                        <option>United Kingdom</option>
+                        <option>Germany</option>
+                    </select>
+                </div>
+
+                <div>
+                    <h2 class="text-xl font-medium text-gray-700 mb-4">iletisim bilgileri</h2>
+                    <div class="space-y-4">
+                        <input id="contact-name" type="text" placeholder="Name" class="form-input-lg">
+                        <div class="flex space-x-4">
+                            <input id="contact-email" type="email" placeholder="Email" class="form-input-lg w-1/2">
+                            <input id="contact-phone" type="tel" placeholder="Phone" class="form-input-lg w-1/2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+         
+            <div class="lg:sticky lg:top-10">
+                <div class="summary-box rounded-xl p-6 space-y-5">
+                    <h2 class="text-sm font-semibold uppercase text-gray-600 mb-4 tracking-wider">Abone ol</h2>
+                    <h3 class="text-xl font-bold text-gray-800">akili Üyeliği</h3>
+              
+                    <div class="space-y-3 pt-2 border-t border-gray-200">
+                        <div class="flex justify-between pt-3">
+                            <span class="text-gray-600">abonelik</span>
+                            <span class="text-pink-600 font-semibold">10 USD</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">KDV</span>
+                            <span class="text-pink-600 font-semibold">1.5 USD</span>
+                        </div>
+                        <p class="text-xs text-gray-500 -mt-2">aylik</p>
+                    </div>
+   
+                    <div class="pt-4 space-y-2">
+                        <label class="text-sm font-semibold text-gray-600">indirim codunz varsa </label>
+                        <div class="relative">
+                            <input type="text" placeholder="Code" class="form-input-lg focus:ring-pink-500" />
+                        </div>
+                    </div>
+                
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-200">
+                        <span class="text-lg font-bold text-gray-800">toplam</span>
+                        <span class="text-2xl font-bold text-pink-600">$11.5 USD</span>
+                    </div>
+
+                    <div class="flex items-start pt-4">
+                        <input type="checkbox" id="agreement" class="mt-1 h-4 w-4 rounded text-pink-600 border-gray-300 focus:ring-pink-500">
+                        <label for="agreement" class="ml-3 text-sm text-gray-600">
+                             <span class="text-pink-600 font-medium">Yukarıdaki Hüküm ve Koşulları</span> ve Otomatik Yenileme Şartlarını kabul ediyorum.
+                        </label>
+                    </div>
+
+                    <button onclick="handleSubscription()" class="w-full subscribe-btn">
+                        SUBSCRIBE
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
