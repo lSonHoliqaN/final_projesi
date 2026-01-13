@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Hakkımızda - Ders Yönetim Sistemi{% endblock %}
+{% block content %}
+<style>
+    .about-container {
+        max-width: 1000px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        color: #333;
+    }
+
+    .about-header-text {
+        font-size: 2.5rem; 
+        font-weight: 800;
+        color: #1F2937;
+        margin-bottom: 30px;
+        border-bottom: 4px solid #3B82F6;
+        padding-bottom: 15px;
+    }
+
+    .about-text {
+        line-height: 2; 
+        font-size: 1.3rem; 
+        color: #4B5563;
+        margin-bottom: 25px;
+    }
+
+    .feature-item {
+        background: #F9FAFB;
+        margin: 20px 0;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 8px solid #3B82F6;
+        font-size: 1.25rem; 
+        line-height: 1.6;
+    }
+
+    .highlight {
+        color: #111827;
+        font-weight: 700;
+    }
+</style>
+
+<div class="about-container">
+    <h2 class="about-header-text">🚀 DYS Proje Tanımı</h2> 
+    
+    <p class="about-text">
+        <span class="highlight">Ders Yönetim Sistemi</span>klasik eğitim anlayışını dijital çağa taşıyan 
+        yenilikçi bir çözümdür. Öğretmenler, öğrenciler ve kurumlar için tasarlanan bu sistem; 
+        dersleri, ödevleri ve sınavları<span class="highlight">tek bir güçlü platformda</span>birleştirir.
+    </p>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            🎯 <span class="highlight">Amaç:</span> Eğitim sürecini basitleştirmek ve verimliliği en üst düzeye çıkarmak.
+        </div>
+        <div class="feature-item">
+            ⚡ <span class="highlight">Yenilik:</span> Modern arayüzü sayesinde idari yükü azaltır, deneyimi hızlandırır.
+        </div>
+        <div class="feature-item">
+            🛡️ <span class="highlight">Güç:</span> Güvenli, ölçeklenebilir ve her kuruma uyum sağlayacak esnekliktedir.
+        </div>
+    </div>
+</div>
+{% endblock %}
